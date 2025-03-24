@@ -1,0 +1,37 @@
+body {
+    background-color: #f8f9fa;
+}
+
+.navbar {
+    margin-bottom: 20px;
+}
+
+.content-section {
+    display: none;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Center profile picture */
+#profile-pic-container {
+    display: inline-block;
+    position: relative;
+}
+
+/* Circular profile picture */
+#profile-pic {
+    border: 3px solid #ddd;
+    object-fit: cover;
+    transition: all 0.3s ease;
+}
+
+/* Profile picture input - hidden but triggers upload */
+#profile-pic-input {
+    margin-top: 8px;
+    width: 50%;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+}
