@@ -1,10 +1,26 @@
 // Load profile data from local storage or set defaults
 function loadProfile() {
+    let currentUser = JSON.parse(localStorage.getItem("currentUser"));
+    let profileSection = document.getElementById("profile");
+
+    // Hide profile if the user is not logged in
+    if (!currentUser) {
+        profileSection.style.display = "none";
+        return;
+    }
+
+    // Show profile section if user is logged in
+    profileSection.style.display = "block";
+
     let profileData = JSON.parse(localStorage.getItem("userProfile")) || {
-        fullName: "John Doe",
-        username: "JohnDoe123",
-        email: "johndoe@example.com",
-        bio: "Web Developer & Tech Enthusiast",
+        fullName: "",
+        username: "",
+        email: "example@gmail.com",
+        bio: "Web Developer",
+        age: "18",
+        birthdate: "January 1, 2002",
+        education: "College Level",
+        contact: "09*********",
         profilePic: "https://via.placeholder.com/150"
     };
 
@@ -13,6 +29,10 @@ function loadProfile() {
     document.getElementById("display-username").innerText = profileData.username;
     document.getElementById("display-email").innerText = profileData.email;
     document.getElementById("display-bio").innerText = profileData.bio;
+    document.getElementById("display-age").innerText = profileData.age;
+    document.getElementById("display-birthdate").innerText = profileData.birthdate;
+    document.getElementById("display-education").innerText = profileData.education;
+    document.getElementById("display-contact").innerText = profileData.contact;
     document.getElementById("profile-pic-display").src = profileData.profilePic;
 
     // Load data into edit mode
@@ -20,6 +40,10 @@ function loadProfile() {
     document.getElementById("username").value = profileData.username;
     document.getElementById("email").value = profileData.email;
     document.getElementById("bio").value = profileData.bio;
+    document.getElementById("age").value = profileData.age;
+    document.getElementById("birthdate").value = profileData.birthdate;
+    document.getElementById("education").value = profileData.education;
+    document.getElementById("contact").value = profileData.contact;
     document.getElementById("profile-pic").src = profileData.profilePic;
 }
 
@@ -43,6 +67,10 @@ function saveProfile() {
         username: document.getElementById("username").value,
         email: document.getElementById("email").value,
         bio: document.getElementById("bio").value,
+        age: document.getElementById("age").value,
+        birthdate: document.getElementById("birthdate").value,
+        education: document.getElementById("education").value,
+        contact: document.getElementById("contact").value,
         profilePic: document.getElementById("profile-pic").src
     };
 
@@ -67,6 +95,7 @@ function updateProfilePic(event) {
     reader.onload = function () {
         const imageUrl = reader.result;
         document.getElementById("profile-pic").src = imageUrl;
+        document.getElementById("profile-pic-display").src = imageUrl; // Update displayed image
     };
 
     if (event.target.files[0]) {
