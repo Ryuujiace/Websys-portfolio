@@ -4,17 +4,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Web System</title>
+    <title>Portfolio</title>
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="styles.css">
 </head>
 
 <body>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container">
-            <a class="navbar-brand" href="#">Web Sys</a>
+            <a class="navbar-brand" href="#">Portfolio</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -25,18 +25,93 @@
                     <li class="nav-item"><a class="nav-link" href="#" onclick="showSection('blog')">Blog</a></li>
                     <li class="nav-item"><a class="nav-link" href="#" onclick="showSection('profile')">Profile</a></li>
                 </ul>
-                <button class="btn btn-outline-light" onclick="logout()">Logout</button>
+                <button id="loginButton" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#authModal">Login</button>
+                <span id="userDisplay" class="fw-bold" style="display: none;"></span>
+                <button id="logoutButton" class="btn btn-primary" style="display: none;" onclick="logout()">Logout</button>
             </div>
         </div>
     </nav>
 
+    <!-- Login & Signup Modals -->
+    <div class="modal fade" id="authModal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modalTitle">Login</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="loginForm">
+                        <div class="mb-3">
+                            <label for="loginEmail" class="form-label">Email</label>
+                            <input type="email" class="form-control" id="loginEmail" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="loginPassword" class="form-label">Password</label>
+                            <input type="password" class="form-control" id="loginPassword" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary w-100">Login</button>
+                        <p class="text-center mt-2">Don't have an account? <a href="#" onclick="toggleAuthForm()">Sign Up</a></p>
+                    </form>
+                    <form id="signupForm" style="display: none;">
+                        <div class="mb-3">
+                            <label for="signupName" class="form-label">Full Name</label>
+                            <input type="text" class="form-control" id="signupName" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="signupEmail" class="form-label">Email</label>
+                            <input type="email" class="form-control" id="signupEmail" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="signupPassword" class="form-label">Password</label>
+                            <input type="password" class="form-control" id="signupPassword" required>
+                        </div>
+                        <button type="submit" class="btn btn-success w-100">Sign Up</button>
+                        <p class="text-center mt-2">Already have an account? <a href="#" onclick="toggleAuthForm()">Login</a></p>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!-- Main Container -->
-    <div class="container mt-5">
+    <div class="container">
 
         <!-- Home Section -->
         <div id="dashboard" class="content-section">
-            <h1>Welcome, Apple Ace Acepcion!</h1>
-            <p>Explore courses, take quizzes, and learn at your own pace.</p>
+            <h1>Welcome to my Portfolio</h1>
+            <p>This subject is an introduction to information technology using the web as a core case study. 
+                Students learn about the underlying hardware, software, networks, and operating systems behind websites 
+                and set up a functional website using this knowledge.</p>
+
+            <!-- About Me Section -->
+            <div class="row mt-5">
+                <div class="col-md-6">
+                    <img src="img/images2.jpg" alt="Your Image" class="img-fluid rounded shadow">
+                </div>
+                <div class="col-md-6">
+                    <img src="img/images2.jpg" alt="Your Image" class="img-fluid rounded shadow">
+                </div>
+            </div>
+            
+            <!-- Skills Section -->
+            <div class="row mt-5">
+                <div class="col-md-12">
+                    <h2>Explore More!</h2>
+                </div>
+                <div class="col-md-6">
+                    <p>HTML, CSS, JavaScript</p>
+                    <div class="progress">
+                        <div class="progress-bar bg-success" style="width: 90%;">90%</div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <p>Python & Django</p>
+                    <div class="progress">
+                        <div class="progress-bar bg-info" style="width: 80%;">80%</div>
+                    </div>
+                </div>
+            </div>
         </div>
 
         <!-- Quiz Section -->
@@ -66,18 +141,21 @@
                 <h2 class="text-center mb-4">Profile Management</h2>
                 
                 <!-- Profile Display -->
-                <div id="profile-display" class="card shadow-lg p-4 mb-5 bg-white rounded">
-                    <div class="text-center mb-4">
+                <div id="profile-display" class="card shadow-lg p-4 mb-5 bg-white rounded d-flex flex-row align-items-center">
+                    <div class="me-4">
                         <img id="profile-pic-display" src="https://via.placeholder.com/150" alt="Profile Picture"
-                            class="rounded-circle border border-3" width="150" height="150">
+                            class="rounded-circle border border-3" width="300" height="360">
                     </div>
-                    <h4 class="text-center" id="display-fullName"></h4>
-                    <p class="text-center text-muted">@<span id="display-username"></span></p>
-                    <p class="text-center"><strong>Email:</strong> <span id="display-email"></span></p>
-                    <p class="text-center"><strong>Bio:</strong> <span id="display-bio"></span></p>
-                    
-                    <div class="text-center mt-3">
-                        <button class="btn btn-primary" onclick="editProfile()">Edit Profile</button>
+                    <div class="flex-grow-1">
+                        <h4 id="display-fullName"></h4>
+                        <p class="text-muted">@<span id="display-username"></span></p>
+                        <p><strong>Email:</strong> <span id="display-email"></span></p>
+                        <p><strong>Bio:</strong> <span id="display-bio"></span></p>
+                        <p><strong>Age:</strong> <span id="display-age"></span></p>
+                        <p><strong>Birtdate:</strong> <span id="display-birthdate"></span></p>
+                        <p><strong>Education:</strong> <span id="display-education"></span></p>
+                        <p><strong>Contact #:</strong> <span id="display-contact"></span></p>
+                        <button class="btn btn-primary mt-3" onclick="editProfile()">Edit Profile</button>
                     </div>
                 </div>
 
@@ -112,45 +190,88 @@
                                 placeholder="Tell us something about yourself...">Web Developer & Tech Enthusiast</textarea>
                         </div>
 
+                        <div class="mb-3">
+                            <label for="email" class="form-label">Age:</label>
+                            <input type="email" id="age" class="form-control" value="">
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="email" class="form-label">Birthdate:</label>
+                            <input type="email" id="birthdate" class="form-control" value="">
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="email" class="form-label">Education:</label>
+                            <input type="email" id="education" class="form-control" value="">
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="email" class="form-label">Contact:</label>
+                            <input type="email" id="contact" class="form-control" value="">
+                        </div>
+
                         <div class="text-center">
                             <button type="button" class="btn btn-success" onclick="saveProfile()">Save Changes</button>
                             <button type="button" class="btn btn-danger" onclick="cancelEdit()">Cancel</button>
                         </div>
                     </form>
                 </div>
+
+                <!-- About Me Section -->
+                <div class="row mt-5">
+                    <div class="col-md-6">
+                        <img src="img/images2.jpg" alt="Your Image" class="img-fluid rounded shadow">
+                    </div>
+                    <div class="col-md-6">
+                        <h2>About Me</h2>
+                        <p>I'm a passionate web developer with expertise in front-end and back-end technologies. I love building 
+                        clean, functional, and visually appealing websites that enhance user experience.</p>
+                    </div>
+                </div>
+
+                <!-- Skills Section -->
+                <div class="row mt-5">
+                    <div class="col-md-12">
+                        <h2>My Skills</h2>
+                    </div>
+                    <div class="col-md-12">
+                        <p>HTML, CSS, JavaScript</p>
+                        <div class="progress">
+                            <div class="progress-bar bg-success" style="width: 60%;">60%</div>
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <p>Python & Django</p>
+                        <div class="progress">
+                            <div class="progress-bar bg-info" style="width: 40%;">40%</div>
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <p>PHP</p>
+                        <div class="progress">
+                            <div class="progress-bar bg-success" style="width: 60%;">60%</div>
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <p>Python & Django</p>
+                        <div class="progress">
+                            <div class="progress-bar bg-info" style="width: 40%;">40%</div>
+                        </div>
+                    </div>
+                </div>
         </div>
-
-
     </div>
 
     <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
     <!-- JS Files -->
-    <script src="js/script.js"></script>
+    <script src="scripts.js"></script>
     <script src="js/auth.js"></script>
     <script src="js/quiz.js"></script>
     <script src="js/blog.js"></script>
     <script src="js/profile.js"></script>
-
-    <!-- JS Script to Toggle Sections -->
-    <script>
-        // Function to show the selected section and hide others
-        function showSection(section) {
-            document.querySelectorAll('.content-section').forEach(el => el.style.display = 'none');
-            document.getElementById(section).style.display = 'block';
-
-            // Load quiz or profile when needed
-            if (section === 'quiz') startQuiz();
-            if (section === 'profile') loadProfile();
-            if (section === 'blog') loadBlog();
-        }
-
-        // Placeholder logout function
-        function logout() {
-            alert('Logging out...');
-        }
-    </script>
+    
 </body>
 
 </html>

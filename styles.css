@@ -1,0 +1,51 @@
+/* Background - Soft Linen with Light Shades */
+body {
+    background: linear-gradient(to bottom, #FFF9F0, #F0F2F2);
+    color: #2E4A70; /* Navy text */
+}
+
+/* Navbar - Dark Navy for Strong Contrast */
+.navbar {
+    margin-bottom: 20px;
+    background-color: #2E4A70 !important; /* Navy */
+}
+
+/* Content Section - Light with Gold Highlights */
+.content-section {
+    display: none;
+    padding: 20px;
+    color: #2E4A70; /* Dark navy text */
+    background-color: #FFF9F0; /* Soft linen */
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    
+}
+
+
+/* Profile Picture Container */
+#profile-pic-container {
+    display: inline-block;
+    position: relative;
+}
+
+/* Circular Profile Picture */
+#profile-pic {
+    border: 3px solid #73C7E3; /* Sky blue */
+    object-fit: cover;
+    transition: all 0.3s ease;
+}
+
+/* Profile Picture Upload Input */
+#profile-pic-input {
+    margin-top: 8px;
+    width: 50%;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+}
+
+/* Highlight Elements */
+.highlight {
+    color: #CF8A40; /* Gold */
+    font-weight: bold;
+}
